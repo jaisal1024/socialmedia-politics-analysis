@@ -1,2 +1,3 @@
 #ignore files
 oauth_token.Rdata
+.DS_Store
