@@ -65,6 +65,31 @@ avg_retweets_campaign <- mean(tweets_campaign_noRT$retweet_count) #19.6
 avg_likes <- mean(tweets_noRT$favorite_count) # 216.9
 avg_likes_campaign <- mean(tweets_campaign_noRT$favorite_count) #34.8
 
+## DENSITY PLOTS
+# RETWEETS
+d <- density(tweets_noRT$retweet_count) # returns the density data 
+plot(d, main = "Density of Tweets (No-Retweets)") # plots the results
+cleaned <- tweets_noRT[which(tweets_noRT$retweet_count<5000),]
+plot(density(cleaned$retweet_count), main = "Density of Tweets (No-Retweets) < 5000") # plots the results
+cleaned_500 <- tweets_noRT[which(tweets_noRT$retweet_count<500),]
+plot(density(cleaned_500$retweet_count), main = "Density of Tweets (No-Retweets) < 500") # plots the results
+dc <- density(tweets_campaign_noRT$retweet_count) # returns the density data 
+plot(dc, main = "Density of Campaign Tweets (No-Retweets)") # plots the results
+cleanedc <- tweets_campaign_noRT[which(tweets_campaign_noRT$retweet_count<500),]
+plot(density(cleanedc$retweet_count), main = "Density of Campaign Tweets (No-Retweets) < 500") # plots the results
+cleaned_500c <- tweets_campaign_noRT[which(tweets_campaign_noRT$retweet_count<100),]
+plot(density(cleaned_500c$retweet_count), main = "Density of Campaign Tweets (No-Retweets) < 100") # plots the results
+
+#LIKES
+d_likes <- density(tweets_noRT$favorite_count) # returns the density data 
+plot(d_likes, main = "Density of Likes (No-Retweets)") # plots the results
+cleaned_likes <- tweets_noRT[which(tweets_noRT$favorite_count<100),]
+plot(density(cleaned_likes$favorite_count), main = "Density of Likes (No-Retweets) < 100") # plots the results
+d_c_likes <- density(tweets_campaign_noRT$favorite_count) # returns the density data 
+plot(d_c_likes, main = "Density of Campaign Likes (No-Retweets)") # plots the results
+cleaned_c_likes <- tweets_campaign_noRT[which(tweets_campaign_noRT$favorite_count<100),]
+plot(density(cleaned_c_likes$favorite_count), main = "Density of Campaign Likes (No-Retweets) < 100") # plots the results
+
 # GET MOST COMMON HASHTAGH
 ht = getCommonHashtags(tweets$text, n=15)
 wordcloud(words=names(ht), freq=ht, max.words=250, 
